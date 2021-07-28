@@ -1,0 +1,47 @@
+﻿@model Infor.Models.User
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    if (@ViewBag.Message != null)
+    {
+        <div style="border: 1px solid red">
+            @ViewBag.Message
+        </div>
+    }
+    <div style="padding:100px; border: 3px solid cadetblue">
+        <div class="row">
+            <div class="col-md-12" style="text-align:center;">
+                <h1>Login</h1>
+            </div>
+        </div>
+        <div>&nbsp;</div>
+        <div class="row form-group">
+            <div class="col-md-6" style="text-align:right">@Html.LabelFor(a => a.Email)</div>
+            <div class="col-md-6">@Html.TextBoxFor(a => a.Email, new { @class = "form-control" })</div>
+        </div>
+        <div class="row">
+            @Html.ValidationMessageFor(a => a.Email)
+        </div>
+        <div class="row form-group">
+            <div class="col-md-6" style="text-align:right">@Html.LabelFor(a => a.Password)</div>
+            <div class="col-md-6">@Html.PasswordFor(a => a.Password, new { @class = "form-control" })</div>
+        </div>
+        <div class="row">
+            @Html.ValidationMessageFor(a => a.Password)
+        </div>
+        <div class="row form-group">
+            <div class="col-md-12" style="padding-left:50%">
+                <div>
+                    <input type="submit" value="Login" class="btn btn-info" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
